@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title>KahoKomiyaJS</title>
@@ -8,115 +9,117 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
   <style media="screen">
+    html {
+      height: 100%;
+    }
 
-  html {
-    height: 100%;
-  }
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: SourceHanSerif-Regular, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", HiraMinProN-W3, HiraMinProN-W6, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", HiraMinPro-W3, HiraMinPro-W6, 游明朝体, YuMincho, 游明朝, "Yu Mincho", HG明朝E, HGP明朝E, HGS明朝E, HGMinchoE, HGPMinchoE, HGSMinchoE, HG明朝B, HGP明朝B, HGS明朝B, HGMinchoB, HGPMinchoB, HGSMinchoB, 平成明朝, "平成明朝 Std", "平成明朝 Pro", "Heisei Mincho", "Heisei Mincho Std", "Heisei Mincho Pro", IPA明朝, IPAMincho, "georgia ref", "times new roman", serif;
+    }
 
-  body {
-    height: 100%;
-    margin: 0;
-    font-family: SourceHanSerif-Regular, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", HiraMinProN-W3, HiraMinProN-W6, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", HiraMinPro-W3, HiraMinPro-W6, 游明朝体, YuMincho, 游明朝, "Yu Mincho", HG明朝E, HGP明朝E, HGS明朝E, HGMinchoE, HGPMinchoE, HGSMinchoE, HG明朝B, HGP明朝B, HGS明朝B, HGMinchoB, HGPMinchoB, HGSMinchoB, 平成明朝, "平成明朝 Std", "平成明朝 Pro", "Heisei Mincho", "Heisei Mincho Std", "Heisei Mincho Pro", IPA明朝, IPAMincho, "georgia ref", "times new roman", serif;
-  }
+    .content {
+      height: 100%;
+      background-color: white;
+    }
 
-  .content {
-    height: 100%;
-    background-color: white;
-  }
+    .board {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      width: 90%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
 
-  .board {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    width: 90%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
+    .board_edited {
+      /* font-size: 30px; */
+      margin: 20px 0;
+      font-weight: bold;
+      text-align: center;
+    }
 
-  .board_edited {
-    /* font-size: 30px; */
-    margin: 20px 0;
-    font-weight: bold;
-    text-align: center;
-  }
+    .board_source {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30%;
+    }
 
-  .board_source {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30%;
-  }
+    textarea {
+      resize: none;
+      width: 80%;
+      height: 100%;
+      -webkit-appearance: none;
+    }
 
-  textarea {
-    resize: none;
-    width: 80%;
-    height: 100%;
-    -webkit-appearance: none;
-  }
+    .actions_wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      bottom: 30px;
+      width: 100%;
+    }
 
-  .actions_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 30px;
-    width: 100%;
-  }
+    .convert_action,
+    .tweet_action,
+    .toggle_action {
+      display: block;
+      border: 1px solid gray;
+      padding: 10px;
+      border-radius: 2px;
+      font-size: 14px;
+      text-decoration: none;
+      color: gray;
+      line-height: 1em;
+      background-color: #f3f3f3;
+      width: 120px;
+      text-align: center;
+    }
 
-  .convert_action,
-  .tweet_action,
-  .toggle_action {
-    display: block;
-    border: 1px solid gray;
-    padding: 10px;
-    border-radius: 2px;
-    font-size: 14px;
-    text-decoration: none;
-    color: gray;
-    line-height: 1em;
-    background-color: #f3f3f3;
-    width: 120px;
-    text-align: center;
-  }
+    .tweet_action {
+      margin-left: 10px;
+    }
 
-  .tweet_action {
-    margin-left: 10px;
-  }
+    .narrow {
+      width: 40px;
+      border-radius: 15px;
+    }
 
-  .narrow {
-    width: 40px;
-    border-radius: 15px;
-  }
+    .btn-stitch {
+      display: inline-block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      /* background: #668ad8; */
+      background: #fa5a5a;
+      color: #FFF;
+      border-radius: 4px;
+      /* box-shadow: 0px 0px 0px 5px #668ad8; */
+      box-shadow: 0px 0px 0px 5px #fa5a5a;
+      border: dashed 1px #FFF;
+      width: 200px;
+      margin: 0.5em;
+    }
 
-  .btn-stitch {
-    display: inline-block;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    /* background: #668ad8; */
-    background: #fa5a5a;
-    color: #FFF;
-    border-radius: 4px;
-    /* box-shadow: 0px 0px 0px 5px #668ad8; */
-    box-shadow: 0px 0px 0px 5px #fa5a5a;
-    border: dashed 1px #FFF;
-    width: 200px;
-  }
+    .btn-stitch:hover {
+      border: dotted 1px #FFF;
+    }
 
-  .btn-stitch:hover {
-    border: dotted 1px #FFF;
-  }
-
-  /* .toggle_action {
+    /* .toggle_action {
   position: fixed;
   bottom: 80px;
   } */
 
-  .hidden {
-    display: none !important;
-  }
-</style>
+    .hidden {
+      display: none !important;
+    }
+  </style>
 
 </head>
+
 <body>
   <div id="app">
     <div class="content">
@@ -126,11 +129,13 @@
           <!-- <h1 v-bind:value="climax">{{ climax }}</h1> -->
         </div>
         <div class="board_source">
-          <textarea v-model="text" @change="convertClimax()" rows="6" maxlength="50" style="font-size:20px;" placeholder="スゴイです！"></textarea>
+          <textarea v-model="text" @change="convertClimax()" rows="6" maxlength="50" style="font-size:20px;"
+            placeholder="スゴイです！"></textarea>
         </div>
       </div>
       <div class="actions_wrapper">
-        <a href="#" class="btn-stitch toggle_action" style="text-align: center;" @click="toggleLoud(),convertClimax()">{{ btnMsg }}</a>
+        <a href="#" class="btn-stitch toggle_action" style="text-align: center;"
+          @click="toggleLoud(),convertClimax()">{{ btnMsg }}</a>
         <a class="tweet_action narrow" style="background-color: #00acee;" target="_blank" v-bind:href="url">
           <span style="font-weight: bold; color: white;">Tweet</span>
         </a>
@@ -153,37 +158,36 @@
 </body>
 
 <script>
-
-const dullness = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔガギグゲゴザジズゼゾダヂヅデドバビブベボヴパピプペポヷヸヴヹヺ".split('');
-const app = new Vue({
-  el   : '#app',
-  data : {
-    climax : 'な゛ん゛ば゛ー゛わ゛ん゛っ゛',
-    url    : 'https://twitter.com/intent/tweet?url=https://kahokomiyajs.firebaseapp.com/&text=な゛ん゛ば゛ー゛わ゛ん゛っ゛%0a%20%23KahoKomiyaJS%20',
-    text   : 'なんばーわんっ',
-    link   : 'https://kahokomiyajs.firebaseapp.com/',
-    tag    : '%20%23KahoKomiyaJS%20',
-    loud   :  true,
-    btnMsg : '今日も元気いっぱいです！！',
-  },
-  methods : {
-    convertClimax : () => {
-      short = app.text.replace(/\s+/g, '').split('')
-      app.climax = app.loud
-      ? short.map(x => x+'゛').join('')
-      : short.map(x => dullness.includes(x) ? x : x + "゛").join('')
-
-      app.url = 'https://twitter.com/intent/tweet?url=' + app.link + '&text=' + app.climax + '%0a' + app.tag
+  const dullness = [..."がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔガギグゲゴザジズゼゾダヂヅデドバビブベボヴパピプペポヷヸヴヹヺ"];
+  const app = new Vue({
+    el: '#app',
+    data: {
+      climax: 'な゛ん゛ば゛ー゛わ゛ん゛っ゛',
+      url: 'https://twitter.com/intent/tweet?url=https://kahokomiyajs.firebaseapp.com/&text=な゛ん゛ば゛ー゛わ゛ん゛っ゛%0a%20%23KahoKomiyaJS%20',
+      text: 'なんばーわんっ',
+      link: 'https://kahokomiyajs.firebaseapp.com/',
+      tag: '%20%23KahoKomiyaJS%20',
+      loud: true,
+      btnMsg: '今日も元気いっぱいです！！',
     },
-    toggleLoud : () => {
-      app.loud = !app.loud
-      app.btnMsg = app.loud
-      ? '今日も元気いっぱいです！！'
-      : '少ししずかにしてますね…！'
-    },
-  }
-});
+    methods: {
+      convertClimax: () => {
+        // short = app.text.replace(/\s+/g, '').split('')
+        short = [...app.text.replace(/\s+/g, '')]
+        app.climax = app.loud
+          ? short.map(x => x + '゛').join('')
+          : short.map(x => dullness.includes(x) ? x : x + "゛").join('')
 
+        app.url = 'https://twitter.com/intent/tweet?url=' + app.link + '&text=' + app.climax + '%0a' + app.tag
+      },
+      toggleLoud: () => {
+        app.loud = !app.loud
+        app.btnMsg = app.loud ?
+          '今日も元気いっぱいです！！' :
+          '少ししずかにしてますね…！'
+      },
+    }
+  });
 </script>
 
 </html>
